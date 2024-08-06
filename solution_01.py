@@ -1,29 +1,13 @@
-"""
-Project 1
-CSE 331 SS24 (Onsay)
-Authors of DLL: Andrew McDonald, Alex Woodring, Andrew Haas, Matt Kight, Lukas Richters, 
-                Anna De Biasi, Tanawan Premsri, Hank Murdock, & Sai Ramesh
-solution.py
-"""
 
 from typing import TypeVar, List
 
-# for more information on type hinting, check out https://docs.python.org/3/library/typing.html
-T = TypeVar("T")  # represents generic type
-Node = TypeVar("Node")  # represents a Node object (forward-declare to use in Node __init__)
+T = TypeVar("T") 
+Node = TypeVar("Node")  
 DLL = TypeVar("DLL")
-
-
-# pro tip: PyCharm auto-renders docstrings (the multiline strings under each function definition)
-# in its "Documentation" view when written in the format we use here. Open the "Documentation"
-# view to quickly see what a function does by placing your cursor on it and using CTRL + Q.
-# https://www.jetbrains.com/help/pycharm/documentation-tool-window.html
-
 
 class Node:
     """
     Implementation of a doubly linked list node.
-    DO NOT MODIFY
     """
     __slots__ = ["value", "next", "prev", "child"]
 
@@ -35,7 +19,6 @@ class Node:
         :param next: reference to the next Node in the linked list.
         :param prev: reference to the previous Node in the linked list.
         :return: None.
-        DO NOT MODIFY
         """
         self.next = next
         self.prev = prev
@@ -47,9 +30,7 @@ class Node:
     def __repr__(self) -> str:
         """
         Represents the Node as a string.
-
         :return: string representation of the Node.
-        DO NOT MODIFY
         """
         return f"Node({str(self.value)})"
 
@@ -59,16 +40,13 @@ class Node:
 class DLL:
     """
     Implementation of a doubly linked list without padding nodes.
-    Modify only below indicated line.
     """
     __slots__ = ["head", "tail", "size"]
 
     def __init__(self) -> None:
         """
         Construct an empty doubly linked list.
-
         :return: None.
-        DO NOT MODIFY
         """
         self.head = self.tail = None
         self.size = 0
@@ -78,7 +56,6 @@ class DLL:
         Represent the DLL as a string.
 
         :return: string representation of the DLL.
-        DO NOT MODIFY
         """
         result = []
         node = self.head
@@ -101,7 +78,6 @@ class DLL:
         """
         :param other: compares equality with this List
         :return: True if equal otherwise False
-        DO NOT MODIFY
         """
         cur_node = self.head
         other_node = other.head
@@ -119,19 +95,23 @@ class DLL:
             if cur_node is self.head or other_node is other.head:
                 return False
 
-    # MODIFY BELOW #
-    # Refer to the classes provided to understand the problems better#
 
     def empty(self) -> bool:
         """
-        INSERT DOCSTRINGS HERE!
+        Checks if the DLL is empty.
+
+        :return: True if the DLL is empty, False otherwise.
         """
         return self.size == 0
         pass
 
     def push(self, val: T, back: bool = True) -> None:
         """
-        INSERT DOCSTRINGS HERE!
+        Inserts a new value into the DLL.
+
+        :param val: The value to insert.
+        :param back: If True, the value is inserted at the end; if False, at the beginning.
+        :return: None
         """
         new_node = Node(val)
         if self.head is None:  # empty list
@@ -153,7 +133,10 @@ class DLL:
 
     def pop(self, back: bool = True) -> None:
         """
-        INSERT DOCSTRINGS HERE!
+        Removes a value from the DLL.
+
+        :param back: If True, removes from the end; if False, removes from the beginning.
+        :return: None
         """
         if self.head is None:
             pass
@@ -176,7 +159,10 @@ class DLL:
 
     def list_to_dll(self, source: List[T]) -> None:
         """
-        INSERT DOCSTRINGS HERE!
+        Converts a list to a DLL.
+
+        :param source: The list to convert.
+        :return: None
         """
         self.head = self.tail = None
         self.size = 0
@@ -195,7 +181,8 @@ class DLL:
 
     def dll_to_list(self) -> List[T]:
         """
-        INSERT DOCSTRINGS HERE!
+        Converts the DLL to a list.
+        :return: A list containing all the values from the DLL.
         """
         new_list = []
         if self.head is None:
@@ -210,7 +197,11 @@ class DLL:
 
     def _find_nodes(self, val: T, find_first: bool = False) -> List[Node]:
         """
-        INSERT DOCSTRINGS HERE!
+        Finds nodes with a specific value.
+
+        :param val: The value to find.
+        :param find_first: If True, returns the first found node only.
+        :return: A list of nodes with the specified value.
         """
         curr = self.head
         new_list = []
@@ -225,7 +216,10 @@ class DLL:
 
     def find(self, val: T) -> Node:
         """
-        INSERT DOCSTRINGS HERE!
+        Find the first node with a specific value.
+
+        :param val: The value to be found.
+        :return: The first node with the specified value, or None if not found.
         """
         found_nodes = self._find_nodes(val, True)
         if found_nodes:
@@ -236,7 +230,10 @@ class DLL:
 
     def find_all(self, val: T) -> List[Node]:
         """
-        INSERT DOCSTRINGS HERE!
+        Find all nodes with a specific value.
+
+        :param val: The value to be found.
+        :return: A list of nodes with the specified value.
         """
         all_found_nodes = self._find_nodes(val, False)
         if all_found_nodes:
@@ -247,7 +244,10 @@ class DLL:
 
     def _remove_node(self, to_remove: Node) -> None:
         """
-        INSERT DOCSTRINGS HERE!
+        Remove a specific node from the doubly linked list.
+
+        :param to_remove: The node to be removed.
+        :return: None.
         """
         if to_remove is None:
             pass
@@ -268,7 +268,10 @@ class DLL:
 
     def remove(self, val: T) -> bool:
         """
-        INSERT DOCSTRINGS HERE!
+        Remove the first node with a specific value.
+
+        :param val: The value to be removed.
+        :return: True if a node was removed, False otherwise.
         """
         curr = self.head
         while curr:
@@ -281,7 +284,10 @@ class DLL:
 
     def remove_all(self, val: T) -> int:
         """
-        INSERT DOCSTRINGS HERE!
+        Remove all nodes with a specific value.
+
+        :param val: The value to be removed.
+        :return: The number of nodes removed.
         """
         curr = self.head
         c = 0
@@ -295,7 +301,8 @@ class DLL:
 
     def reverse(self) -> None:
         """
-        INSERT DOCSTRINGS HERE!
+        Reverse the doubly linked list.
+        :return: None.
         """
         curr = self.head
         self.head, self.tail = self.tail, self.head
@@ -307,7 +314,9 @@ class DLL:
 
 def dream_escaper(dll: DLL) -> DLL:
     """
-    INSERT DOCSTRING HERE!
+    Flatten a doubly linked list with child pointers into a single-level doubly linked list.
+    :param dll: The doubly linked list to be flattened.
+    :return: The flattened doubly linked list.
     """
     if dll.head is None:
         return dll
