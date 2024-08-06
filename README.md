@@ -6,7 +6,7 @@ This project provides an implementation of a doubly linked list (DLL) in Python.
 
 ## Installation
 
-No specific installation is required. Just clone the repository and run the `solution.py` file.
+No specific installation is required. Just clone the repository and run the `solution_01.py` file.
 
 ## Usage
 
